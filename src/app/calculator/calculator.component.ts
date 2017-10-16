@@ -72,7 +72,7 @@ export class CalculatorComponent implements OnInit {
         break;
       case '^': this.calculatedResult = Math.pow(this.firstNumber, this.secondNumber);
         break;
-      case '@': this.calculatedResult = Math.sqrt(this.firstNumber)
+      case '@': this.calculatedResult = Math.round(Math.sqrt(this.firstNumber)*100)/100;
     }
   }
 
