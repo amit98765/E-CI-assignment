@@ -3,12 +3,11 @@
     <span id="outputVal">{{calculatedResult}}</span>
   </div>
   <div id="input">
-    <input type="text" pattern="^[0-9]+[.]?[0-9]*$" name="firstNumber" id="firstNumber" [(ngModel)]="firstNumber" placeholder="Num 1"
-      (keyup)="verify($event)" />
+    <input type="text" name="firstNumber" id="firstNumber" placeholder="Num 1" [formControl]="firstNumber" [(ngModel)]="firstNumberValue"/>
     <input type="text" name="operator" style="text-align:center;" id="operator" placeholder="Operator" [(ngModel)]="operator"
       (keyup)="verifyOperator($event)" />
-    <input type="text" name="secondNumber" id="secondNumber" placeholder="Num 2" [(ngModel)]="secondNumber" (keyup)="verify($event)"
-    />
+    <input type="text" name="secondNumber" id="secondNumber" placeholder="Num 2" [formControl]="secondNumber" [(ngModel)]="secondNumberValue"/>
+
     <br />
     <div id="buttonSubmit">
       <button [disabled]="buttonDisabled" (click)="calculate()">Submit</button>

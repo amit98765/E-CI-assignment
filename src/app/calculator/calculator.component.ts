@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-calculator',
+  selector: 'app2-calculator',
   templateUrl: './calculator.component.html',
   styleUrls: ['./calculator.component.css']
 })
@@ -18,7 +18,7 @@ export class CalculatorComponent implements OnInit {
 
   // verify number1 and number2 to be in correct format
   verify(e) {
-    let out = parseInt(e.target.value);
+    let out = parseFloat(e.target.value);
 
     //if the text entered is not a number, set the text to empty
     if (isNaN(out)) {
