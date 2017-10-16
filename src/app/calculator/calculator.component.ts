@@ -39,7 +39,7 @@ export class CalculatorComponent implements OnInit {
     console.log(this.firstNumber);
   }
   verifyOperator(e) {
-    let allowedOperators = ['+', '-', '/', '*', '^'];
+    let allowedOperators = ['+', '-', '/', '*', '^', '@'];
     if (!(allowedOperators.indexOf(e.target.value) > -1)) {
       e.target.value = "";
       this.operatorOk = false;
@@ -47,7 +47,10 @@ export class CalculatorComponent implements OnInit {
     else {
       this.operatorOk = true;
     }
-    if (this.firstNumber && this.secondNumber && this.operatorOk && (e.target.value != null)) {
+    if (this.firstNumber && (e.target.value == '@')) {
+      this.buttonDisabled = false;
+    }
+    else if (this.firstNumber && this.secondNumber && this.operatorOk && (e.target.value != null)) {
       this.buttonDisabled = false;
     } else {
       this.buttonDisabled = true;
@@ -63,13 +66,13 @@ export class CalculatorComponent implements OnInit {
         this.calculatedResult = this.firstNumber - this.secondNumber;
         break;
       case '/':
-        this.calculatedResult = this.firstNumber / this.secondNumber;
+        this.calculatedResult = Math.round((this.firstNumber / this.secondNumber) * 100) / 100;
         break;
       case '*': this.calculatedResult = this.firstNumber * this.secondNumber;
         break;
       case '^': this.calculatedResult = Math.pow(this.firstNumber, this.secondNumber);
         break;
-        case '@' : this.calculatedResult = Math.sqrt(this.firstNumber)
+      case '@': this.calculatedResult = Math.sqrt(this.firstNumber)
     }
   }
 

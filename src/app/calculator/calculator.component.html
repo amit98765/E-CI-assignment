@@ -5,10 +5,12 @@
   <div id="input">
     <input type="text" name="firstNumber" id="firstNumber" [(ngModel)]="firstNumber" placeholder="Num 1" (keyup)="verify($event)"
     />
-    <input type="text" name="operator" id="operator" placeholder="Operator" [(ngModel)]="operator" (keyup)="verifyOperator($event)"
+    <input type="text" name="operator" style="text-align:center;" id="operator" placeholder="Operator" [(ngModel)]="operator" (keyup)="verifyOperator($event)"
     />
     <input type="text" name="secondNumber" id="secondNumber" placeholder="Num 2" [(ngModel)]="secondNumber" (keyup)="verify($event)"
     />
-    <button [disabled]="buttonDisabled" (click)="calculate()">Submit</button>
+    <br />
+    <div id="buttonSubmit"><button [disabled]="buttonDisabled" (click)="calculate()">Submit</button></div>
+    
   </div>
 </div>
