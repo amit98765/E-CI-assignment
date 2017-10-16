@@ -17,16 +17,13 @@
       </li>
       <li>
         Operators currently supported are
-        <b>+</b>,
-        <b>-</b>,
-        <b>/</b>,
-        <b>*</b>,
-        <b>^</b>,
-        <b>@</b>
+        <span *ngFor="let operator of allowedOperators" style="margin-right:7px;">
+          {{operator}}   
+        </span>
       </li>
     </ul>
   </div>
   <div class="calculator">
-    <app-calculator></app-calculator>
+    <app-calculator allowedoperators={{allowedOperators}}></app-calculator>
   </div>
 </div>

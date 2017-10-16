@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import 'rxjs/add/operator/debounceTime';
 
@@ -16,6 +16,9 @@ export class Calculator2Component {
 
   firstNumberValue: number = null;
   secondNumberValue: number = null;
+
+  @Input('allowedoperators') allowedoperators: string[];
+
 
   constructor() {
     this.firstNumber.valueChanges.debounceTime(500).subscribe(value => this.verify(value, 1));
@@ -53,7 +56,7 @@ export class Calculator2Component {
   }
 
   verifyOperator(e) {
-    let allowedOperators = ['+', '-', '/', '*', '^', '@'];
+    let allowedOperators = this.allowedoperators;
     if (!(allowedOperators.indexOf(e.target.value) > -1)) {
       e.target.value = "";
       this.operatorOk = false;
