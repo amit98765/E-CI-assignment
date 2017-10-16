@@ -8,5 +8,7 @@ import { Calculator2Component } from './calculator2/calculator2.component';
 })
 export class AppComponent {
   title = 'app';
+
+  // pass the operators that are allowed to the child component
   allowedOperators = ['+', '-', '/', '*', '^', '@'];
 }
