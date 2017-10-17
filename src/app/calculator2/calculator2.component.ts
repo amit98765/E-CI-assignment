@@ -55,7 +55,7 @@ export class Calculator2Component {
     }
 
 
-    if (this.firstNumberValue != null && this.secondNumberValue != null && this.operatorOk) {
+    if (this.firstNumberValue != null && (this.secondNumberValue != null || this.operator == '@') && this.operatorOk) {
       this.buttonDisabled = false;
     }
     else {
@@ -87,6 +87,7 @@ export class Calculator2Component {
       this.operatorOk = false;
       this.buttonDisabled = true;
     }
+
   }
 
   // this function performs the final calculations
