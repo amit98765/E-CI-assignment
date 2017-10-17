@@ -11,4 +11,12 @@ export class AppComponent {
 
   // pass the operators that are allowed to the child component
   allowedOperators = ['+', '-', '/', '*', '^', '@'];
+
+
+  calculations = [];
+
+  addCalculation(e) {
+    this.calculations.push(e);
+  }
+
 }

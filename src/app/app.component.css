@@ -13,3 +13,11 @@
 h1{
     margin: 5px;
 }
+
+.calculationHistory
+{
+    margin-top:20px;
+}
+.calculationHistory li{
+    padding: 5px;
+}

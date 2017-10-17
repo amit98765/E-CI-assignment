@@ -18,12 +18,21 @@
       <li>
         Operators currently supported are
         <span *ngFor="let operator of allowedOperators" style="margin-right:7px;">
-          {{operator}}   
+          {{operator}}
         </span>
       </li>
     </ul>
   </div>
   <div class="calculator">
-    <app-calculator allowedoperators={{allowedOperators}}></app-calculator>
+    <app-calculator allowedoperators={{allowedOperators}}  (addCalculation)="addCalculation($event)"></app-calculator>
+  </div>
+  <div class="calculationHistory" *ngIf="calculations.length > 0">
+    The calculations you performed are:
+    <br />
+    <ul>
+      <li *ngFor="let calculation of calculations">
+        {{calculation}}
+      </li>
+    </ul>
   </div>
 </div>

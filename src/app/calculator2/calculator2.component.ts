@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import 'rxjs/add/operator/debounceTime';
 
@@ -22,8 +22,9 @@ export class Calculator2Component {
 
   // retrieve the passed allowed operators
   @Input('allowedoperators') allowedoperators: string[];
+  @Output() addCalculation = new EventEmitter<string>();
 
-// if user does not type for 500ms, intiate a function to validate the fields for being a proper number
+  // if user does not type for 500ms, intiate a function to validate the fields for being a proper number
   constructor() {
     this.firstNumber.valueChanges.debounceTime(500).subscribe(value => this.verify(value, 1));
     this.secondNumber.valueChanges.debounceTime(500).subscribe(value => this.verify(value, 2));
@@ -32,7 +33,7 @@ export class Calculator2Component {
   //  two way binding to the operator field
   operator: string;
   operatorOk: boolean = false;
-  
+
   // calculated result variable which displays the final result on the screen
   calculatedResult: number = 0;
 
@@ -65,19 +66,25 @@ export class Calculator2Component {
   // this function verifies the operator to be in among the allowed operators
   verifyOperator(e) {
     let allowedOperators = this.allowedoperators;
-    if (!(allowedOperators.indexOf(e.target.value) > -1)) {
-      e.target.value = "";
-      this.operatorOk = false;
+    if (e.target.value != "") {
+      if (!(allowedOperators.indexOf(e.target.value) > -1)) {
+        e.target.value = "";
+        this.operatorOk = false;
+      }
+      else {
+        this.operatorOk = true;
+      }
+      if (this.firstNumberValue != null && (e.target.value == '@')) {
+        this.buttonDisabled = false;
+      }
+      else if (this.firstNumberValue != null && this.secondNumberValue != null && this.operatorOk) {
+        this.buttonDisabled = false;
+      } else {
+        this.buttonDisabled = true;
+      }
     }
     else {
-      this.operatorOk = true;
-    }
-    if (this.firstNumberValue != null && (e.target.value == '@')) {
-      this.buttonDisabled = false;
-    }
-    else if (this.firstNumberValue != null && this.secondNumberValue != null && this.operatorOk) {
-      this.buttonDisabled = false;
-    } else {
+      this.operatorOk = false;
       this.buttonDisabled = true;
     }
   }
@@ -99,6 +106,8 @@ export class Calculator2Component {
       case '^': this.calculatedResult = Math.pow(this.firstNumberValue, this.secondNumberValue);
         break;
       case '@': this.calculatedResult = Math.round(Math.sqrt(this.firstNumberValue) * 100) / 100;
+        break;
     }
+    this.addCalculation.emit(this.firstNumberValue + ' ' + this.operator + ' ' + ((this.operator != '@') ? this.secondNumberValue : "") + " = " + this.calculatedResult);
   }
 }
